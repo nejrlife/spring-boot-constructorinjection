@@ -14,6 +14,10 @@ public class DemoController {
 	private Coach myCoach;
 	
 	//define a constructore for dependency injection
+	@GetMapping("/")
+	public String hello() {
+		return "hello world!";
+	}
 	
 	@GetMapping("/getSomeString")
 	public String getSomeString() {
