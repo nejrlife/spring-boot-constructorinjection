@@ -2,6 +2,7 @@ package com.luv2code.springcoredemo.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Description;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,15 +18,17 @@ public class DemoController {
 	
 	//define a constructore for dependency injection
 	@GetMapping("/")
-	@Operation(summary = "Hello World")
+	@Operation(summary = "Hello World", description = "Hello worldy")
+	@Description(value = "This is just a hello worldy")
 	public String hello() {
 		return "hello world!";
 	}
 	
-	@GetMapping("/getSomeString")
-	@Operation(summary = "Get Some String")
-	public String getSomeString() {
-		return "heroku time";
+	@GetMapping("/getAString")
+	@Operation(summary = "Get String", description = "Get a random string")
+	@Description(value = "This is just to get a random string.")
+	public String getAString() {
+		return "sample string";
 	}
 	
 	@Autowired
