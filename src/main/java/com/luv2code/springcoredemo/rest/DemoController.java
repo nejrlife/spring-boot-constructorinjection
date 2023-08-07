@@ -4,21 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Description;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.luv2code.springcoredemo.common.Coach;
-
 import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 public class DemoController {
-	//define a private field for the dependency
-	
-	private Coach myCoach;
 	
 	//define a constructore for dependency injection
 	@GetMapping(path = "/", produces=MediaType.APPLICATION_JSON_VALUE)
@@ -27,9 +21,8 @@ public class DemoController {
 	public Map<String, String> hello() {
 		
 		HashMap<String, String> map = new HashMap<>();
-	    map.put("key", "value");
-	    map.put("foo", "bar");
-	    map.put("aa", "bb");
+	    map.put("Status", "OK");
+	    map.put("StatusCode", "200");
         
         return map;
 	}
@@ -39,16 +32,14 @@ public class DemoController {
 	@Description(value = "This is just to get a random string.")
 	public Map<String, String> getAString() {
 		HashMap<String, String> map = new HashMap<>();
-	    map.put("key", "value");
-	    map.put("foo", "bar");
-	    map.put("getAString", "getAString");
+		map.put("Status", "OK");
+	    map.put("StatusCode", "200");
         
         return map;
 	}
 	
 	@Autowired
-	public DemoController (@Qualifier("baseballCoach") Coach theCoach) {
-		System.out.println("In construcor: " + getClass().getSimpleName());
-		myCoach = theCoach;
+	public DemoController () {
+		System.out.println("In construcor: ");
 	}
 }
