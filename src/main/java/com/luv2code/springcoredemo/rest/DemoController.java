@@ -17,13 +17,13 @@ public class DemoController {
 	
 	//define a constructore for dependency injection
 	@GetMapping("/")
-	@Operation(summary = "Hello World", description = "Hello worldy")
+	@Operation(summary = "Hello World")
 	public String hello() {
 		return "hello world!";
 	}
 	
 	@GetMapping("/getSomeString")
-	@Operation(summary = "Get Some String", description = "Get some random string")
+	@Operation(summary = "Get Some String")
 	public String getSomeString() {
 		return "heroku time";
 	}
