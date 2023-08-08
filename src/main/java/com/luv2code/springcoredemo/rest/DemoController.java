@@ -35,11 +35,11 @@ public class DemoController {
 	public List<TableRow> getAString() {
 	    
 	    TableRow r1 = new TableRow();
-	    r1.setEmail("nixonedora@ibm.com");
+	    r1.setEmail("sampleemail@sample.com");
 	    r1.setProjectId("123451");
 	    
 	    TableRow r2 = new TableRow();
-	    r2.setEmail("saske@g.com");
+	    r2.setEmail("sampleemail2@sample2.com");
 	    r2.setProjectId("123452");
 	    
         List<TableRow> listy = new ArrayList<TableRow>();
