@@ -2,10 +2,12 @@ package com.luv2code.pmo.service;
 
 import com.luv2code.pmo.domain.Owner;
 import com.luv2code.pmo.domain.Project;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ProjectContractMonitorImpl implements ProjectContractMonitor {
 
     @Override
