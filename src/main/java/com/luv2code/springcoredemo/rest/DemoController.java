@@ -32,7 +32,7 @@ public class DemoController {
 	@GetMapping(path = "/getAString", produces=MediaType.APPLICATION_JSON_VALUE)
 	@Operation(summary = "Get String", description = "Get a random string")
 	@Description(value = "This is just to get a random string.")
-	public List<TableRow> getAString() {
+	public TableWrapper getAString() {
 	    
 	    TableRow r1 = new TableRow();
 	    r1.setEmail("sampleemail@sample.com");
@@ -46,12 +46,27 @@ public class DemoController {
         listy.add(r1);
         listy.add(r2);
         
-        return listy;
+        TableWrapper tw = new TableWrapper();
+        tw.setTrList(listy);
+        
+        return tw;
 	}
 	
 	@Autowired
 	public DemoController () {
 		System.out.println("In construcor: ");
+	}
+	
+	public class TableWrapper {
+		private List<TableRow> trList;
+		
+		public void setTrList(List<TableRow> trList) {
+			this.trList = trList;
+	     }
+		
+		public List<TableRow> getTrList() {
+	         return this.trList;
+	     }
 	}
 	
 	public class TableRow {
