@@ -35,7 +35,7 @@ public class DemoController {
 	public TableWrapper getAString() {
 	    
 	    TableRow r1 = new TableRow();
-	    r1.setEmail("nixonedora@ibm.com");
+	    r1.setEmail("nixon.edora@ibm.com");
 	    r1.setProjectId("123451");
 	    
 	    TableRow r2 = new TableRow();
