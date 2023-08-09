@@ -45,7 +45,7 @@ public class DemoController {
 	    r1.setCw_ccr("CW161439");
 	    r1.setStartDate("1/1/2021");
 	    r1.setEndDate("12/31/2024");
-	    r1.setOwnerEmail("Anna.M.Shivers@lumen.com");
+	    r1.setOwnerEmail("sample_email1@sample.com");
 	    r1.setOwnerName("Anna");
 	    r1.setProgramConsultant("Alexis Herrera");
 	    r1.setWithActiveWorkers("Yes");
@@ -61,7 +61,7 @@ public class DemoController {
 	    r2.setCw_ccr("CW158709");
 	    r2.setStartDate("2/1/2021");
 	    r2.setEndDate("12/31/2023");
-	    r2.setOwnerEmail("Beth.Gonzalez@lumen.com");
+	    r2.setOwnerEmail("sample_email2@sample.com");
 	    r2.setOwnerName("Beth");
 	    r2.setProgramConsultant("Marina Sanchez");
 	    r2.setWithActiveWorkers("Yes");
