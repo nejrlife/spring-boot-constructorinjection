@@ -27,9 +27,8 @@ public class DummyProjectContractMonitorSvcImpl implements ProjectContractMonito
     @Override
     public List<Project> getExpiringProjectList() {
         ArrayList<Project> expiringProjectList = new ArrayList<>();
-        Project p1 = new Project("Approved", "CTLKTQ00000577", 7, "AG Audit Services - IBM", "CW161439", "1/1/2021", "12/31/2024", "Anna.M.Shivers@lumen.com", "Anna", "Alexis Herrera", "Yes", "WFKDX", "", "");
-        Project p2 = new Project("Approved", "CTLKTQ00000599", 9, "IBM WTX Staffing SOW", "CW158709", "2/1/2021", "12/31/2023", "Beth.Gonzalez@lumen.com", "Beth", "Marina Sanchez", "Yes", "WPR4X", "", "");
-
+        Project p1 = new Project("Approved", "CTLKTQ00000577", 7, "AG Audit Services - IBM", "CW161439", "1/1/2021", "12/31/2024", "nixon.edora@ibm.com", "Anna", "Alexis Herrera", "Yes", "WFKDX", "", "");
+        Project p2 = new Project("Approved", "CTLKTQ00000599", 9, "IBM WTX Staffing SOW", "CW158709", "2/1/2021", "12/31/2023", "sample@samplemail.com", "Beth", "Marina Sanchez", "Yes", "WPR4X", "", "");
 
         expiringProjectList.add(p1);
         expiringProjectList.add(p2);
@@ -37,7 +36,23 @@ public class DummyProjectContractMonitorSvcImpl implements ProjectContractMonito
         return expiringProjectList;
     }
 
-    public void sendEmailToExpiringProjectOwners(List<Project> expiringProjects) {
+    @Override
+    public List<Project> getProjectList() {
+        ArrayList<Project> projectList = new ArrayList<>();
+        Project p1 = new Project("Approved", "CTLKTQ00000577", 7, "AG Audit Services - IBM", "CW161439", "1/1/2021", "12/31/2024", "Anna.M.Shivers@lumen.com", "Anna", "Alexis Herrera", "Yes", "WFKDX", "", "");
+        Project p2 = new Project("Approved", "CTLKTQ00000599", 9, "IBM WTX Staffing SOW", "CW158709", "2/1/2021", "12/31/2023", "Beth.Gonzalez@lumen.com", "Beth", "Marina Sanchez", "Yes", "WPR4X", "", "");
+
+        projectList.add(p1);
+        projectList.add(p2);
+
+        return projectList;
+    }
+
+    @Override
+    public List<String> sendEmailToSponsor() {
+        List<String> emailList = new ArrayList<>();
+
+        List<Project> expiringProjects = this.getExpiringProjectList();
         for (Project project : expiringProjects) {
             String bodyTemplate = "Hi " + project.getOwnerName() + "\n" +
                     "SOW ID " + project.getId() + " is expiring on " + project.getEndDate() + "\n" +
@@ -46,16 +61,9 @@ public class DummyProjectContractMonitorSvcImpl implements ProjectContractMonito
                     "reference to the workers assigned to the project if they will be extended, moved, or closed. " +
                     "\n Please Advise";
 
-
+            emailList.add(project.getOwnerEmail());
         }
-
-    }
-
-    @Override
-    public Boolean sendEmailToSponsor(Project project) {
-        boolean isSuccess = false;
-
-        return isSuccess;
+        return emailList;
     }
 
 }

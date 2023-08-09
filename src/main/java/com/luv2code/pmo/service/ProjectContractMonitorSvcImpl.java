@@ -4,6 +4,7 @@ import com.luv2code.pmo.domain.Project;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service(value = "impl")
@@ -28,7 +29,16 @@ public class ProjectContractMonitorSvcImpl implements ProjectContractMonitorSvc 
     public List<Project> getExpiringProjectList() {
         ArrayList<Project> expiringProjectList = new ArrayList<>();
 
+
         return expiringProjectList;
+    }
+
+    @Override
+    public List<Project> getProjectList() {
+        ArrayList<Project> projectList = new ArrayList<>();
+
+
+        return projectList;
     }
 
     public void sendEmailToExpiringProjectOwners(List<Project> expiringProjects) {
@@ -46,10 +56,15 @@ public class ProjectContractMonitorSvcImpl implements ProjectContractMonitorSvc 
     }
 
     @Override
-    public Boolean sendEmailToSponsor(Project project) {
-        boolean isSuccess = false;
+    public List<String> sendEmailToSponsor() {
 
-        return isSuccess;
+
+        return null;
+    }
+
+    private Boolean isProjectExpiring(Date startDate, Date endDate) {
+
+        return false;
     }
 
 }

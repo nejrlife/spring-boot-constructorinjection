@@ -6,6 +6,6 @@ public interface ProjectDao {
 
     public Project create();
     public void delete(Project project);
-    public Project save();
+    public Project save(Project project);
     public Project readProjectById(String addressId);
 }

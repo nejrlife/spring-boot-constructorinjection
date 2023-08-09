@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ProjectsWrapper {
+public class ExpiringProjectsWrapper {
 	
 	@JsonProperty("Expiring Projects")
 	private List<Project> expiringProjects;

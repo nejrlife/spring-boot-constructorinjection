@@ -11,5 +11,7 @@ public interface ProjectContractMonitorSvc {
 
     public List<Project> getExpiringProjectList();
 
-    public Boolean sendEmailToSponsor(Project project);
+    public List<Project> getProjectList();
+
+    public List<String> sendEmailToSponsor();
 }
