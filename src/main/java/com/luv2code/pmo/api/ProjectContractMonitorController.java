@@ -49,16 +49,19 @@ public class ProjectContractMonitorController {
   	    return map;
   	}
 
-    @GetMapping("/list")
+    @GetMapping(path = "/list", produces=MediaType.APPLICATION_JSON_VALUE)
+  	@Operation(summary = "List all projects", description = "Lists all projects")
+  	@Description(value = "This just lists all projects")
     public Map<String, List<Project>> listAllProjects() {
         return Collections.singletonMap("ProjectList", pcmSvc.getProjectList());
 
     }
 
-    @GetMapping("/send-mail")
+    @GetMapping(path = "/send-mail", produces=MediaType.APPLICATION_JSON_VALUE)
+  	@Operation(summary = "Send Email", description = "Sends emails to expiring project owners")
+  	@Description(value = "This just sends emails to all expiring projects")
     public Map<String,List<String>> sendEmailToExpiringProjectOwners() {
         return Collections.singletonMap("Emails",pcmSvc.sendEmailToSponsor());
-
     }
 
 }
