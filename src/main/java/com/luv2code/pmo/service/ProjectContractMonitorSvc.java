@@ -5,12 +5,12 @@ import com.luv2code.pmo.domain.Project;
 
 import java.util.List;
 
-public interface ProjectContractMonitor {
+public interface ProjectContractMonitorSvc {
     Integer addDataToMasterList(List<Project> projectList);
 
     public List<Project> getUpdatedList();
 
     public List<Project> getExpiringProjectList();
 
-    public Boolean sendEmailToSponsor(Owner sponsor);
+    public Boolean sendEmailToSponsor(Project project);
 }

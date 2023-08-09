@@ -11,4 +11,9 @@ public class BoxFileManagerImpl implements FileManager {
     public void uploadFile(File file) {
 
     }
+
+    @Override
+    public File readFile() {
+        return null;
+    }
 }

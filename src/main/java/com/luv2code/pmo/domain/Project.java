@@ -1,22 +1,45 @@
 package com.luv2code.pmo.domain;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
+@Component
 public class Project {
 
-    private String id;
     private String status;
+    private String id;
     private Integer revision;
     private String name;
     private String cw_ccr;
-    private Date startDate;
-    private Date endDate;
-    private Owner owner;
+    private String startDate;
+    private String endDate;
+    private String ownerEmail;
+    private String ownerName;
     private String programConsultant;
-    private Boolean withActiveWorkers;
+    private String withActiveWorkers;
     private String accountID;
     private String dataExtract;
     private String manualUpdate;
+    public Project() {
+    }
+
+    public Project(String status, String id, Integer revision, String name, String cw_ccr, String startDate, String endDate, String ownerEmail, String ownerName, String programConsultant, String withActiveWorkers, String accountID, String dataExtract, String manualUpdate) {
+        this.status = status;
+        this.id = id;
+        this.revision = revision;
+        this.name = name;
+        this.cw_ccr = cw_ccr;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.ownerEmail = ownerEmail;
+        this.programConsultant = programConsultant;
+        this.withActiveWorkers = withActiveWorkers;
+        this.accountID = accountID;
+        this.dataExtract = dataExtract;
+        this.manualUpdate = manualUpdate;
+        this.ownerName = ownerName;
+    }
 
     public String getId() {
         return id;
@@ -58,28 +81,36 @@ public class Project {
         this.cw_ccr = cw_ccr;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public Owner getOwner() {
-        return owner;
+    public String getOwnerEmail() {
+        return ownerEmail;
     }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
+    public void setOwnerEmail(String ownerEmail) {
+        this.ownerEmail = ownerEmail;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
     public String getProgramConsultant() {
@@ -90,11 +121,11 @@ public class Project {
         this.programConsultant = programConsultant;
     }
 
-    public Boolean getWithActiveWorkers() {
+    public String getWithActiveWorkers() {
         return withActiveWorkers;
     }
 
-    public void setWithActiveWorkers(Boolean withActiveWorkers) {
+    public void setWithActiveWorkers(String withActiveWorkers) {
         this.withActiveWorkers = withActiveWorkers;
     }
 
