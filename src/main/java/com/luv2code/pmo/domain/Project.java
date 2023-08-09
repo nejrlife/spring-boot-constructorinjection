@@ -2,8 +2,6 @@ package com.luv2code.pmo.domain;
 
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
 @Component
 public class Project {
 

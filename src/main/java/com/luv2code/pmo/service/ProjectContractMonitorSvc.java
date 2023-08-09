@@ -1,9 +1,8 @@
 package com.luv2code.pmo.service;
 
-import com.luv2code.pmo.domain.Owner;
-import com.luv2code.pmo.domain.Project;
-
 import java.util.List;
+
+import com.luv2code.pmo.domain.Project;
 
 public interface ProjectContractMonitorSvc {
     Integer addDataToMasterList(List<Project> projectList);
