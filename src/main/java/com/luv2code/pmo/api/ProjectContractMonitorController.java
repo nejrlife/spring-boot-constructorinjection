@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.box.sdk.BoxAPIConnection;
+import com.box.sdk.BoxFolder;
+import com.box.sdk.BoxItem;
 import com.luv2code.pmo.domain.ExpiringProjectsWrapper;
 import com.luv2code.pmo.domain.FileResponseWrapper;
 import com.luv2code.pmo.domain.Project;
@@ -55,6 +58,25 @@ public class ProjectContractMonitorController {
         }
     	epw.setExpiringProjects(projectList);
         return epw;
+    }
+    
+    @PostMapping(path = "/update-masterlist", produces=MediaType.APPLICATION_JSON_VALUE)
+  	@Operation(summary = "Update Projects List", description = "Update the projects list")
+  	@Description(value = "This is just to update the projects list.")
+    public FileResponseWrapper updateProjectList() {
+    	FileResponseWrapper fpw = new FileResponseWrapper();
+    	
+    	BoxAPIConnection api = new BoxAPIConnection("JFnSVPwoxUgibkJNhYsZjB8JHfLL7L2p");
+    	BoxFolder rootFolder = BoxFolder.getRootFolder(api);
+    	String responseString = "";
+    	for (BoxItem.Info itemInfo : rootFolder) {
+//    	    System.out.format("[%s] %s\n", itemInfo.getID(), itemInfo.getName());
+    	    responseString += itemInfo.getID() + " ";
+    	    responseString += itemInfo.getName();
+    	}
+    	
+    	fpw.setResponseString(responseString);
+        return fpw;
     }
     
     @PostMapping(path = "/get-response-string", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
