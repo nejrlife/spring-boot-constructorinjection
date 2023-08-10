@@ -19,6 +19,10 @@ public class Project {
     private String accountID;
     private String dataExtract;
     private String manualUpdate;
+    
+    private String emailContent;
+    private String emailSubject;
+    
     public Project() {
     }
 
@@ -150,4 +154,20 @@ public class Project {
     public void setManualUpdate(String manualUpdate) {
         this.manualUpdate = manualUpdate;
     }
+
+	public String getEmailSubject() {
+		return emailSubject;
+	}
+
+	public void setEmailSubject(String emailSubject) {
+		this.emailSubject = emailSubject;
+	}
+
+	public String getEmailContent() {
+		return emailContent;
+	}
+
+	public void setEmailContent(String emailContent) {
+		this.emailContent = emailContent;
+	}
 }

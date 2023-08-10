@@ -41,7 +41,19 @@ public class ProjectContractMonitorController {
   	@Description(value = "This is just to get the expiring projects table.")
     public ExpiringProjectsWrapper getExpiringProjectList() {
     	ExpiringProjectsWrapper epw = new ExpiringProjectsWrapper();
-    	epw.setExpiringProjects(pcmSvc.getExpiringProjectList());
+    	List<Project> projectList = pcmSvc.getExpiringProjectList();
+    	for (Project project : projectList) {
+            String bodyTemplate = "Hi " + project.getOwnerName() + "\n" +
+                    "SOW ID " + project.getId() + " is expiring on " + project.getEndDate() + "\n" +
+                    "Please advise if these SOW IDs are under negotiation for extension " +
+                    "or will not be extended so we may work with the Delivery Managers " +
+                    "reference to the workers assigned to the project if they will be extended, moved, or closed. " +
+                    "\n Please Advise";
+            project.setEmailContent(bodyTemplate);
+            String subjectTemplate = "Please advise for expiring SOW ID: " + project.getId();
+            project.setEmailSubject(subjectTemplate);
+        }
+    	epw.setExpiringProjects(projectList);
         return epw;
     }
     
