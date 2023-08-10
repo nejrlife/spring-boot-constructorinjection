@@ -9,14 +9,20 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Description;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.luv2code.pmo.domain.ExpiringProjectsWrapper;
+import com.luv2code.pmo.domain.FileResponseWrapper;
 import com.luv2code.pmo.domain.Project;
+import com.luv2code.pmo.domain.ReqBody;
 import com.luv2code.pmo.service.ProjectContractMonitorSvc;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @RestController
 @RequestMapping(path = "api/v1/project")
@@ -36,6 +42,18 @@ public class ProjectContractMonitorController {
     	ExpiringProjectsWrapper epw = new ExpiringProjectsWrapper();
     	epw.setExpiringProjects(pcmSvc.getExpiringProjectList());
         return epw;
+    }
+    
+    @GetMapping(path = "/get-response-string", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+  	@Operation(summary = "Get Sample File response String", description = "Get sample file response string")
+  	@Description(value = "Get the sample file response string")
+    public FileResponseWrapper getResponseString(@Parameter(description = "Object to add.", required = true,
+            content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema=@Schema(implementation = ReqBody.class))) @RequestBody ReqBody body) {
+    	
+    	FileResponseWrapper frw = new FileResponseWrapper();
+    	frw.setResponseString(body.getMyFile());
+        return frw;
     }
     
     //define a constructore for dependency injection
