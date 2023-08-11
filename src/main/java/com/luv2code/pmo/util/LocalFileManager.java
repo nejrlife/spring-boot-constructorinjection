@@ -1,12 +1,10 @@
 package com.luv2code.pmo.util;
 
-import org.apache.commons.io.FileUtils;
-import org.springframework.stereotype.Component;
-
+import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
+
+import org.springframework.stereotype.Component;
 
 @Component(value = "local")
 public class LocalFileManager implements FileManager {
@@ -24,4 +22,10 @@ public class LocalFileManager implements FileManager {
         File outputFile = new File(url.getFile());
         return outputFile;
     }
+
+	@Override
+	public ByteArrayInputStream readBaos(String fileName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -18,6 +18,10 @@ public class ProjectDaoImpl implements ProjectDao {
     @Autowired()
     @Qualifier(value = "local")
     FileManager fileManager;
+    
+    @Autowired()
+    @Qualifier(value = "box")
+    FileManager boxFileManager;
 
     @Override
     public Project create() {
@@ -72,10 +76,10 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public Map<String, Project> getProjectListFromCsvFile() {
-        File file = fileManager.readFile("pay_terms.supplier.list(10).csv");
+        ByteArrayInputStream baos = boxFileManager.readBaos("pay_terms.supplier.list(10).csv");
         HashMap<String, Project> projectsMap = new HashMap<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(baos))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
@@ -104,11 +108,12 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public Map<String, Project> getProjectListFromMasterFile() {
-        File file = fileManager.readFile("2023_07Jul_SOW-Object-Tracker-Master-List.xlsx");
+    	ByteArrayInputStream baos = boxFileManager.readBaos("2023_07Jul_SOW-Object-Tracker-Master-List.xlsx");
+//        File file = fileManager.readFile("2023_07Jul_SOW-Object-Tracker-Master-List.xlsx");
         HashMap<String, Project> projectsMap = new HashMap<>();
         try {
-            FileInputStream excelFile = new FileInputStream(file);
-            Workbook workbook = new XSSFWorkbook(excelFile);
+//            FileInputStream excelFile = new FileInputStream(file);
+            Workbook workbook = new XSSFWorkbook(baos);
             Sheet datatypeSheet = workbook.getSheetAt(0);
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
             for (Row currentRow : datatypeSheet) {
