@@ -41,10 +41,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @RequestMapping(path = "api/v1/project")
 public class ProjectContractMonitorController {
 
-    @Qualifier(value = "dummy")
+    @Qualifier(value = "impl")
     private final ProjectContractMonitorSvc pcmSvc;
 
-    public ProjectContractMonitorController(@Qualifier(value = "dummy") ProjectContractMonitorSvc pcmSvc) {
+    public ProjectContractMonitorController(@Qualifier(value = "impl") ProjectContractMonitorSvc pcmSvc) {
         this.pcmSvc = pcmSvc;
     }
 
