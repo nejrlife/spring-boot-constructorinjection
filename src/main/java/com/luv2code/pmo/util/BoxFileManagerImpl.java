@@ -42,7 +42,7 @@ public class BoxFileManagerImpl implements FileManager {
     @Override
     public ByteArrayInputStream readBaos(String fileName) {
 
-        BoxAPIConnection api = new BoxAPIConnection("gXHvBJQHTbwMCY9lozHyG0iCmVipDMml");
+        BoxAPIConnection api = new BoxAPIConnection("fmjKxfjaY3waZF0lMa5RMyScUvJ8NUr5");
         BoxFolder rootFolder = BoxFolder.getRootFolder(api);
         BoxFolder sowsFolder = getBoxFolderFromFolder(api, rootFolder, "SOWS-Files");
         BoxFile file = getBoxFileFromFolder(api, sowsFolder, fileName);
