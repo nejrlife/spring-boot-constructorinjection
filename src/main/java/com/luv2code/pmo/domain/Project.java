@@ -7,7 +7,7 @@ public class Project {
 
     private String status;
     private String id;
-    private Integer revision;
+    private Double revision;
     private String name;
     private String cw_ccr;
     private String startDate;
@@ -26,7 +26,7 @@ public class Project {
     public Project() {
     }
 
-    public Project(String status, String id, Integer revision, String name, String cw_ccr, String startDate, String endDate, String ownerEmail, String ownerName, String programConsultant, String withActiveWorkers, String accountID, String dataExtract, String manualUpdate) {
+    public Project(String status, String id, Double revision, String name, String cw_ccr, String startDate, String endDate, String ownerEmail, String ownerName, String programConsultant, String withActiveWorkers, String accountID, String dataExtract, String manualUpdate) {
         this.status = status;
         this.id = id;
         this.revision = revision;
@@ -59,11 +59,11 @@ public class Project {
         this.status = status;
     }
 
-    public Integer getRevision() {
+    public Double getRevision() {
         return revision;
     }
 
-    public void setRevision(Integer revision) {
+    public void setRevision(Double revision) {
         this.revision = revision;
     }
 

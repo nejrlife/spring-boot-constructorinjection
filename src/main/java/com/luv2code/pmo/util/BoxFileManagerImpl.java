@@ -13,7 +13,7 @@ public class BoxFileManagerImpl implements FileManager {
     }
 
     @Override
-    public File readFile() {
+    public File readFile(String fileName) {
         return null;
     }
 }
