@@ -1,8 +1,7 @@
 package com.luv2code.pmo.api;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -76,7 +75,7 @@ public class ProjectContractMonitorController {
     public FileResponseWrapper updateProjectList() {
     	FileResponseWrapper fpw = new FileResponseWrapper();
     	
-    	BoxAPIConnection api = new BoxAPIConnection("t7CCrlTo2Xyx675ogazIXNyVMzo9utmE");
+    	BoxAPIConnection api = new BoxAPIConnection("fKO9IVWsRHDdZ5V4zyo5AN1nqhW8WgXz");
     	BoxFolder rootFolder = BoxFolder.getRootFolder(api);
     	String responseString = "";
     	for (BoxItem.Info itemInfo : rootFolder) {
@@ -89,10 +88,10 @@ public class ProjectContractMonitorController {
     	BoxFile.Info info = file.getInfo();
     	
     	String xlsString = "";
-    	FileOutputStream stream;
-    	File textFile = new File(info.getName());
+    	ByteArrayOutputStream stream = null;
+    	
 		try {
-			stream = new FileOutputStream(textFile);
+			stream = new ByteArrayOutputStream();
 			file.download(stream);
 	    	stream.close();
 		} catch (IOException e) {
@@ -103,8 +102,8 @@ public class ProjectContractMonitorController {
 		
 		
 		
-		if (textFile != null) {
-			xlsString += writeToExcel(textFile);
+		if (stream != null) {
+			xlsString += writeToExcel(stream.toByteArray());
 		}
 		
     	fpw.setResponseString(info.getName() + xlsString);
@@ -149,14 +148,14 @@ public class ProjectContractMonitorController {
         return Collections.singletonMap("Emails",pcmSvc.sendEmailToSponsor());
     }
     
-    private String writeToExcel (File fileIn) {
+    private String writeToExcel (byte[] fileIn) {
     	String res = "Result: ";
     	try
         {
-            FileInputStream file = new FileInputStream(fileIn);
+            ByteArrayInputStream inStream = new ByteArrayInputStream(fileIn);
  
             //Create Workbook instance holding reference to .xlsx file
-            XSSFWorkbook workbook = new XSSFWorkbook(file);
+            XSSFWorkbook workbook = new XSSFWorkbook(inStream);
  
             //Get first/desired sheet from the workbook
             XSSFSheet sheet = workbook.getSheetAt(0);
@@ -189,7 +188,7 @@ public class ProjectContractMonitorController {
                 }
                 System.out.println("");
             }
-            file.close();
+            inStream.close();
         } 
         catch (Exception e) 
         {
