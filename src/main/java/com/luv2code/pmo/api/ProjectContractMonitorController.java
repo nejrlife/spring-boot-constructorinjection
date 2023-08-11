@@ -41,7 +41,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @RequestMapping(path = "api/v1/project")
 public class ProjectContractMonitorController {
 
-    @Qualifier(value = "impl")
     private final ProjectContractMonitorSvc pcmSvc;
 
     public ProjectContractMonitorController(@Qualifier(value = "impl") ProjectContractMonitorSvc pcmSvc) {
@@ -86,6 +85,7 @@ public class ProjectContractMonitorController {
     	}
     	BoxFile file = new BoxFile(api, responseString);
     	BoxFile.Info info = file.getInfo();
+
     	
     	String xlsString = "";
     	ByteArrayOutputStream stream = null;

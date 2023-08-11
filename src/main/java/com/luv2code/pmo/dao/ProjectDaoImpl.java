@@ -108,12 +108,11 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public Map<String, Project> getProjectListFromMasterFile() {
-    	ByteArrayInputStream baos = boxFileManager.readBaos("2023_07Jul_SOW-Object-Tracker-Master-List.xlsx");
-//        File file = fileManager.readFile("2023_07Jul_SOW-Object-Tracker-Master-List.xlsx");
+        File file = fileManager.readFile("2023_07Jul_SOW-Object-Tracker-Master-List.xlsx");
         HashMap<String, Project> projectsMap = new HashMap<>();
         try {
-//            FileInputStream excelFile = new FileInputStream(file);
-            Workbook workbook = new XSSFWorkbook(baos);
+            FileInputStream excelFile = new FileInputStream(file);
+            Workbook workbook = new XSSFWorkbook(excelFile);
             Sheet datatypeSheet = workbook.getSheetAt(0);
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
             for (Row currentRow : datatypeSheet) {
