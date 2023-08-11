@@ -16,12 +16,8 @@ import java.util.*;
 public class ProjectDaoImpl implements ProjectDao {
 
     @Autowired()
-    @Qualifier(value = "local")
-    FileManager fileManager;
-    
-    @Autowired()
     @Qualifier(value = "box")
-    FileManager boxFileManager;
+    FileManager fileManager;
 
     @Override
     public Project create() {
