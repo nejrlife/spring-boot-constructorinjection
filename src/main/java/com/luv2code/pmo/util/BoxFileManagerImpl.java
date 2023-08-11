@@ -31,7 +31,7 @@ public class BoxFileManagerImpl implements FileManager {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
-        return null;
+        return file;
     }
 
     @Override
