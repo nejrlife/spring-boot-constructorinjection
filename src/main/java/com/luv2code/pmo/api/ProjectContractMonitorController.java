@@ -58,7 +58,7 @@ public class ProjectContractMonitorController {
     public FileResponseWrapper updateProjectList() {
     	FileResponseWrapper fpw = new FileResponseWrapper();
     	
-    	BoxAPIConnection api = new BoxAPIConnection("fKO9IVWsRHDdZ5V4zyo5AN1nqhW8WgXz");
+    	BoxAPIConnection api = new BoxAPIConnection("nBR9gXtdDJ4468V4OkcThGuYa8oG8emu");
     	BoxFolder rootFolder = BoxFolder.getRootFolder(api);
     	String responseString = "";
     	for (BoxItem.Info itemInfo : rootFolder) {

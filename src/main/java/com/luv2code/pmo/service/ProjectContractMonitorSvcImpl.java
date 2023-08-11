@@ -50,7 +50,7 @@ public class ProjectContractMonitorSvcImpl implements ProjectContractMonitorSvc 
                             "\nPlease advise if these SOW IDs are under negotiation for extension " +
                             "or will not be extended so we may work with the Delivery Managers " +
                             "reference to the workers assigned to the project if they will be extended, moved, or closed. " +
-                            "\n\n Please Advise";
+                            "\n\nBest Regards\n\nLeah Mariano";
                     project.setEmailContent(bodyTemplate);
                     String subjectTemplate = "Please advise for the expiring SOW ID: " + project.getId();
                     project.setEmailSubject(subjectTemplate);
