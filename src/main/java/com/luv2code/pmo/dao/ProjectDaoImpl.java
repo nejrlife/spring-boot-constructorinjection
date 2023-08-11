@@ -1,16 +1,26 @@
 package com.luv2code.pmo.dao;
 
-import com.luv2code.pmo.domain.Project;
-import com.luv2code.pmo.util.FileManager;
-import org.apache.poi.ss.usermodel.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import com.luv2code.pmo.domain.Project;
+import com.luv2code.pmo.util.FileManager;
 
 @Component
 public class ProjectDaoImpl implements ProjectDao {
@@ -72,10 +82,10 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public Map<String, Project> getProjectListFromCsvFile() {
-        File file = fileManager.readFile("pay_terms.supplier.list(10).csv");
+    	ByteArrayInputStream baos = fileManager.readBaos("pay_terms.supplier.list(10).csv");
         HashMap<String, Project> projectsMap = new HashMap<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(baos))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
@@ -104,11 +114,10 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public Map<String, Project> getProjectListFromMasterFile() {
-        File file = fileManager.readFile("2023_07Jul_SOW-Object-Tracker-Master-List.xlsx");
+    	ByteArrayInputStream baos = fileManager.readBaos("2023_07Jul_SOW-Object-Tracker-Master-List.xlsx");
         HashMap<String, Project> projectsMap = new HashMap<>();
         try {
-            FileInputStream excelFile = new FileInputStream(file);
-            Workbook workbook = new XSSFWorkbook(excelFile);
+            Workbook workbook = new XSSFWorkbook(baos);
             Sheet datatypeSheet = workbook.getSheetAt(0);
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
             for (Row currentRow : datatypeSheet) {

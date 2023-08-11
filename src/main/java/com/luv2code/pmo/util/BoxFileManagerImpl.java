@@ -1,9 +1,14 @@
 package com.luv2code.pmo.util;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Iterator;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Component;
 
 import com.box.sdk.BoxAPIConnection;
@@ -37,12 +42,10 @@ public class BoxFileManagerImpl implements FileManager {
     @Override
     public ByteArrayInputStream readBaos(String fileName) {
 
-        BoxAPIConnection api = new BoxAPIConnection("wxNnQmEUuQrDVhSbPwePDKeG9Hx9YiTa");
+        BoxAPIConnection api = new BoxAPIConnection("0LPAvOzOe8lTYZFQtonoKW8rOEZsg9bP");
         BoxFolder rootFolder = BoxFolder.getRootFolder(api);
         BoxFolder sowsFolder = getBoxFolderFromFolder(api, rootFolder, "SOWS-Files");
         BoxFile file = getBoxFileFromFolder(api, sowsFolder, fileName);
-
-        BoxFile.Info info = file.getInfo();
 
         ByteArrayOutputStream stream = null;
         try {

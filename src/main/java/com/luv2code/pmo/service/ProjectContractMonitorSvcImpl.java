@@ -1,16 +1,17 @@
 package com.luv2code.pmo.service;
 
-import com.luv2code.pmo.dao.ProjectDao;
-import com.luv2code.pmo.domain.Project;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAdjusters;
-import java.util.*;
+import com.luv2code.pmo.dao.ProjectDao;
+import com.luv2code.pmo.domain.Project;
 
 @Service(value = "impl")
 public class ProjectContractMonitorSvcImpl implements ProjectContractMonitorSvc {
@@ -44,6 +45,15 @@ public class ProjectContractMonitorSvcImpl implements ProjectContractMonitorSvc 
             try {
                 Date endDate = sdf.parse(project.getEndDate());
                 if (isProjectExpiring(endDate)) {
+                	String bodyTemplate = "Hi " + project.getOwnerName() + "\n\n" +
+                            "SOW ID " + project.getId() + " is expiring on " + project.getEndDate() + "\n" +
+                            "\nPlease advise if these SOW IDs are under negotiation for extension " +
+                            "or will not be extended so we may work with the Delivery Managers " +
+                            "reference to the workers assigned to the project if they will be extended, moved, or closed. " +
+                            "\n\n Please Advise";
+                    project.setEmailContent(bodyTemplate);
+                    String subjectTemplate = "Please advise for the expiring SOW ID: " + project.getId();
+                    project.setEmailSubject(subjectTemplate);
                     expiringProjectList.add(project);
                 }
             } catch (ParseException e) {
