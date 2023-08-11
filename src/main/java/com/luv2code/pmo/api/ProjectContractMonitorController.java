@@ -88,6 +88,7 @@ public class ProjectContractMonitorController {
     	BoxFile file = new BoxFile(api, responseString);
     	BoxFile.Info info = file.getInfo();
     	
+    	String xlsString = "";
     	FileOutputStream stream;
     	File textFile = new File(info.getName());
 		try {
@@ -97,9 +98,10 @@ public class ProjectContractMonitorController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			xlsString += e.getMessage();
 		}
 		
-		String xlsString = "";
+		
 		
 		if (textFile != null) {
 			xlsString += writeToExcel(textFile);
@@ -192,6 +194,7 @@ public class ProjectContractMonitorController {
         catch (Exception e) 
         {
             e.printStackTrace();
+            res += e.getMessage();
         }
     	
     	return res;
