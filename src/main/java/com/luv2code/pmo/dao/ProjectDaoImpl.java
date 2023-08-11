@@ -76,10 +76,10 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public Map<String, Project> getProjectListFromCsvFile() {
-        ByteArrayInputStream baos = boxFileManager.readBaos("pay_terms.supplier.list(10).csv");
+        File file = fileManager.readFile("pay_terms.supplier.list(10).csv");
         HashMap<String, Project> projectsMap = new HashMap<>();
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(baos))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
