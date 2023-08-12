@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ExpiringProjectsWrapper {
 	
-	@JsonProperty("The following are expiring projects this month. Please select a project to send the owner a notification mail.")
+	@JsonProperty("Expiring Projects")
 	private List<Project> expiringProjects;
 
 	public void setExpiringProjects(List<Project> expiringProjects) {
