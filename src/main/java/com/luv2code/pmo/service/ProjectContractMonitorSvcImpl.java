@@ -46,11 +46,11 @@ public class ProjectContractMonitorSvcImpl implements ProjectContractMonitorSvc 
                 Date endDate = sdf.parse(project.getEndDate());
                 if (isProjectExpiring(endDate)) {
                 	String bodyTemplate = "Hi " + project.getOwnerName() + "\n\n" +
-                            "SOW ID " + project.getId() + " is expiring on " + project.getEndDate() + "\n" +
+                            "This email's purpose is to notify that SOW ID " + project.getId() + " is expiring on " + project.getEndDate() + "\n" +
                             "\nPlease advise if these SOW IDs are under negotiation for extension " +
                             "or will not be extended so we may work with the Delivery Managers " +
                             "reference to the workers assigned to the project if they will be extended, moved, or closed. " +
-                            "\n\nBest Regards\n\nLeah Mariano";
+                            "\n\nThank you and best regards\n\nNixon Edora Jr.";
                     project.setEmailContent(bodyTemplate);
                     String subjectTemplate = "Please advise for the expiring SOW ID: " + project.getId();
                     project.setEmailSubject(subjectTemplate);
